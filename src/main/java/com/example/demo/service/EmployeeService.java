@@ -5,6 +5,7 @@ import com.example.demo.models.Employee;
 
 import com.example.demo.models.Leaves;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployeeService {
@@ -20,6 +21,4 @@ public interface EmployeeService {
     void delete(Long employeeId);
     int getAvailabledays(String type);
 
-
-    Leaves getEmployeeById(int id);
 }

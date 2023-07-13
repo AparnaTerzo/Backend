@@ -21,7 +21,7 @@ public class Personal {
     private String gender;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id",referencedColumnName = "id")
     private Employee employee;
 
 

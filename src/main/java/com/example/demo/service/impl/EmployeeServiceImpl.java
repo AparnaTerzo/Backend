@@ -5,10 +5,10 @@ import com.example.demo.models.Employee;
 
 import com.example.demo.models.Leaves;
 import com.example.demo.repository.EmployeeRepository;
-import com.example.demo.repository.LeaveRepository;
 import com.example.demo.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import static com.example.demo.mapper.EmployeeMapper.mapToEmployeeDto;
@@ -16,12 +16,12 @@ import static com.example.demo.mapper.EmployeeMapper.mapToEmployee;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
-    private LeaveRepository leaveRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository,LeaveRepository leaveRepository) {
+
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
 
         this.employeeRepository = employeeRepository;
-        this.leaveRepository = leaveRepository;
+
     }
 
     @Override
@@ -58,6 +58,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = mapToEmployee(employeeDto);
         return employeeRepository.save(employee);
     }
+
+
     @Override
     public int getAvailabledays(String type) {
         if (type.equals("Medeicalleave")) {
@@ -70,10 +72,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             return Leaves.paternityLeave;
     }
 
-    @Override
-    public Leaves getEmployeeById(int id) {
-        return leaveRepository.findById(id);
-    }
+
+
 
 
 }
