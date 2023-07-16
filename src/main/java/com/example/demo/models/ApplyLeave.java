@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,10 +28,11 @@ public class ApplyLeave {
     private String note;
 
     private String type;
-    private boolean approval;
+    private int approval;
 
     @ManyToOne
-    @JoinColumn(name="employee_id")
+    @JsonBackReference
     private Employee employee;
+
 
 }

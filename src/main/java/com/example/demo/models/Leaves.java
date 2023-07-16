@@ -14,12 +14,12 @@ public class Leaves {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int leaveId;
-    public static int earnedLeave;
+    private int id;
+    private int earnedLeave;
 
-    public static int sickLeave;
+    private int sickLeave;
 
-    public static int paternityLeave;
+    private int paternityLeave;
 
     @ManyToOne
     private Employee employee;

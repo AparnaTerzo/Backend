@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,14 +16,16 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name="employee")
-public class Employee {
+public
+class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
-    private String employeeId;
+    @Column(unique = true)
     private String email;
     private String designation;
+    @Column(unique = true)
     private Long mobile;
     private String address;
     private String department;
@@ -31,16 +33,14 @@ public class Employee {
     private LocalDate dob;
     private String status;
     private String employeeType;
-    private String directManager;
     private String profileUrl;
-
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Personal personal;
+    private int directManager;
 
     @OneToMany(mappedBy = "employee")
     private List<Leaves> leaves;
 
-    @OneToMany(mappedBy = "employee")
-    private List<ApplyLeave> applyLeaves;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ApplyLeave> appliedLeaves;
 
 }

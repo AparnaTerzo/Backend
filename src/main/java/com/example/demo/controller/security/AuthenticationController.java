@@ -1,6 +1,9 @@
 package com.example.demo.controller.security;
 
 
+import com.example.demo.dto.UserRoleDto;
+import com.example.demo.models.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.impl.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +40,7 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return ResponseEntity.ok("Logged out successfully");
     }
+
+
 
 }

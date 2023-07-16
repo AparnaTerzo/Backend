@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.models.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ApplyLeaveDto {
-    private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
     private String type;
-    private String reason;
-    private Long employeeId;
+    private String note;
+    private Employee employee;
 }
